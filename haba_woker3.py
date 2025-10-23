@@ -29,14 +29,14 @@ def save_text(text: str, directory: str = "transcriptions", base_name: str = "on
     # 保存先のフォルダーがなければ作成
     os.makedirs(directory, exist_ok=True)
 
-    # UTF-8でテキスト書き込み
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write(text)
-
     # タイムスタンプで重複を防止
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"{base_name}_{timestamp}.txt"
     filepath = os.path.join(directory, filename)
+
+    # UTF-8でテキスト書き込み
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(text)
 
     print(f"文字起こし結果を {filepath} に保存しました。")
     return filepath
